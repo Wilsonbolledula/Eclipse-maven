@@ -10,18 +10,20 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Ensure you have defined variables if needed
-                    def imageName = "project-a"
-                    bat "docker build -t ${imageName} ."
+                    bat 'docker build -t project-a .'
                 }
             }
         }
+        
+        // Remove or comment out the Push Docker Image stage
+        /*
         stage('Push Docker Image') {
             steps {
                 script {
-                    bat "docker push your-docker-repo/project-a"
+                    bat 'docker push your-docker-repo/project-a'
                 }
             }
         }
+        */
     }
 }
