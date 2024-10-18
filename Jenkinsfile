@@ -1,26 +1,25 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'wilsonbolledula/*******', url: 'https://github.com/Wilsonbolledula/Eclipse-java.git'
+                git branch: 'main', url: 'https://github.com/Wilsonbolledula/Eclipse-java.git', credentialsId: 'wilsonbolledula/*******'
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image and store it in the app variable
-                    app = docker.build(java)
+                    // Ensure you have defined variables if needed
+                    def imageName = "project-a"
+                    sh "docker build -t ${imageName} ."
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    // Login to Docker Hub
-                    docker.withRegistry('https://wilsonbolledula/v1/', 'dockerhub') {
-                        app.push() // Use the app variable to push the image
-                    }
+                    sh "docker push your-docker-repo/project-a"
                 }
             }
         }
