@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'wilsonbolledula/******', url: 'https://github.com/Wilsonbolledula/Eclipse-java.git'
+                git branch: 'main', credentialsId: 'wilsonbolledula/*******', url: 'https://github.com/Wilsonbolledula/Eclipse-java.git'
             }
         }
         stage('Build') {
