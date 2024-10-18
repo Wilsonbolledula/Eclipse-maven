@@ -9,8 +9,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Assuming you have a Dockerfile in the root of your project
-                    def app = docker.build("your-image-name:${env.BUILD_ID}")
+                    // Build the Docker image and store it in the app variable
+                    app = docker.build(java)
                 }
             }
         }
@@ -18,8 +18,8 @@ pipeline {
             steps {
                 script {
                     // Login to Docker Hub
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-                        app.push()
+                    docker.withRegistry('https://wilsonbolledula/v1/', 'dockerhub') {
+                        app.push() // Use the app variable to push the image
                     }
                 }
             }
