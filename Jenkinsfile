@@ -14,13 +14,15 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean package'  // Use the correct Maven tool
+                // Use 'bat' instead of 'sh' for Windows
+                bat 'mvn clean package'  // Use the correct Maven tool
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
+                    // Use 'bat' to run Windows commands
                     bat 'docker build --no-cache -t project-a .'
                 }
             }
