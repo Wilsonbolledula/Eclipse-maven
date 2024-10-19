@@ -3,7 +3,7 @@ package wilson;
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println("hello iam wilson");
+		System.out.println("iam wilson");
 
 	}
 
