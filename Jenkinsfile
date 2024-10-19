@@ -1,16 +1,20 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven_3.x'  // Specify the Maven version configured in Jenkins
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Wilsonbolledula/Eclipse-java.git', credentialsId: 'wilsonbolledula/******'
             }
         }
-        
+
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                sh 'mvn clean package'  // Use the correct Maven tool
             }
         }
 
@@ -21,17 +25,5 @@ pipeline {
                 }
             }
         }
-        
-        // Remove or comment out the Push Docker Image stage if you don't need it
-        /*
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    bat 'docker push your-docker-repo/project-a'
-                }
-            }
-        }
-        */
     }
 }
-
